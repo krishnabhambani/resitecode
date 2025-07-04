@@ -240,7 +240,7 @@ const Contact = () => {
                     <div className="text-2xl">📧</div>
                     <div>
                       <h4 className="text-lg font-semibold text-white">Email</h4>
-                      <p className="text-gray-300">krishnabhambani1.com</p>
+                      <p className="text-gray-300">krishnabhambani1@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">

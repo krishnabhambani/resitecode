@@ -67,7 +67,7 @@ const Navbar = () => {
               onClick={handleHomeClick}
             >
               <img 
-                src="/logo.png" 
+                src="/logo1.png" 
                 alt="Tools Cult" 
                 className="h-12 w-auto"
               />

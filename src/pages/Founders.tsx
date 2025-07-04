@@ -1,5 +1,5 @@
 
-import React from 'react';
+// import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -209,7 +209,6 @@ const Founders = () => {
               </Button>
               <Button 
                 onClick={() => scrollToSection('featured-tools')}
-                variant="outline"
                 className="border-white text-white bg-black hover:bg-white hover:text-black hover:scale-105 transition-all duration-200"
               >
                 View All Tools

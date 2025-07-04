@@ -5,7 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Founders from "./pages/Founders";
+// import Founders from "./pages/Founders";
 import Validator from "./pages/Validator";
 import ServiceGig from "./pages/ServiceGig";
 import PPTGenerator from "./pages/PPTGenerator";
@@ -28,7 +28,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/founders" element={<Founders />} />
+          {/* <Route path="/founders" element={<Founders />} /> */}
           <Route path="/validator" element={<Validator />} />
           <Route path="/ppt-generator" element={<PPTGenerator />} />
           <Route path="/resume-builder" element={<ResumeBuilder />} />

@@ -64,7 +64,7 @@ const Validator = () => {
           email: cleanString(row['Email'] || row['EMAIL'] || row['email'] || row['Email Address'] || row['Email_Address']),
           holderName: cleanString(row['Holder Name'] || row['HolderName'] || row['holderName'] || row['Name'] || row['Student Name'] || row['Student_Name']),
           issuanceDate: 'July 2025', // Default issue date for all certificates
-          issuer: cleanString(row['Issuer'] || row['issuer'] || row['Issued By'] || row['Issued_By'] || row['Organization']) || 'CodeResite',
+          issuer: cleanString(row['Issuer'] || row['issuer'] || row['Issued By'] || row['Issued_By'] || row['Organization']) || 'Tools Cult', // Default issuer
           certificateType: 'Intern', // Default certificate type for all certificates
           status: cleanString(row['Status'] || row['status']) || 'Valid'
         };
@@ -184,7 +184,7 @@ const Validator = () => {
               Certificate Validator
             </h1>
             <p className="text-gray-300">
-              Verify the authenticity of CodeResite certificates
+              Verify the authenticity of Tools Cult certificates
             </p>
           </motion.div>
 

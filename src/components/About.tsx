@@ -41,7 +41,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-              About CodeResite
+              About Tools Cult
             </h2>
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
               We are a team of passionate developers, designers, and innovators committed to creating 

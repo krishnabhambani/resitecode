@@ -76,8 +76,8 @@ const Footer = () => {
           >
             <h3 className="text-lg font-bold text-white mb-4">Contact Info</h3>
             <div className="space-y-2 text-gray-400">
-              <p>📧 contact@coderesite.com</p>
-              <p>📱 +91 79920 89454</p>
+              <p>📧 krishnabhambani1@gmail.com</p>
+              <p>📱 +91 7905226134</p>
               <p>🌍 India</p>
             </div>
           </motion.div>
@@ -139,7 +139,7 @@ const Footer = () => {
           className="border-t border-white/10 mt-8 pt-8 text-center"
         >
           <p className="text-gray-400 text-sm">
-            © 2025 CodeResite. All rights reserved.
+            © 2025 Tools Cult. All rights reserved.
           </p>
         </motion.div>
       </div>

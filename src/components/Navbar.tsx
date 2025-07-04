@@ -66,13 +66,12 @@ const Navbar = () => {
               className="cursor-pointer flex items-center"
               onClick={handleHomeClick}
             >
-              <img 
-                src="/logo1.png" 
-                alt="Tools Cult" 
-                className="h-12 w-auto"
-              />
+              <h1 className="text-white text-2xl font-bold tracking-wide">
+                Tools<span className="text-green-400">Cult</span>
+              </h1>
             </motion.div>
           </div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">

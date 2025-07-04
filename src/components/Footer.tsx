@@ -48,14 +48,14 @@ const Footer = () => {
                   Our Services
                 </button>
               </li>
-              <li>
+              {/* <li>
                 <a 
                   href="/founders"
                   className="text-gray-400 hover:text-green-400 transition-colors"
                 >
                   Founders
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a 
                   href="/validator"

@@ -2,6 +2,7 @@
 // import React from 'react';
 import { motion } from 'framer-motion';
 import { Twitter, Linkedin, Github } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -57,12 +58,9 @@ const Footer = () => {
                 </a>
               </li> */}
               <li>
-                <a 
-                  href="/validator"
-                  className="text-gray-400 hover:text-green-400 transition-colors"
-                >
+                <Link to="/validator" className="text-gray-400 hover:text-green-400 transition-colors">
                   Certificate Validator
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

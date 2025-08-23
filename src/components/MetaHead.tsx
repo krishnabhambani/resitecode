@@ -6,10 +6,10 @@ function MetaHead() {
     <Helmet>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="canonical" href="https://www.coderesite.com" />
+      <link rel="canonical" href="https://tools-cult.vercel.app/" />
 
       {/* Title - Set first to prevent any temporary titles */}
-      <title>CodeResite – AI Tools, Automation, Web Development & Cybersecurity</title>
+      <title>Tools-Cult</title>
 
       {/* Favicon & Web App Icons */}
       <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />

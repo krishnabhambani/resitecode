@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 const getApiKey = () => {
   const apiKey = import.meta.env.VITE_GEMINI_LEAD_API_KEY;
   console.log('🔑 Checking API key availability:', apiKey ? 'Found' : 'Missing');
-  
+
   if (!apiKey) {
     throw new Error('Gemini API key not found. Please check your environment variables.');
   }
@@ -15,7 +15,7 @@ export const refinePrompt = async (rawInput: string, targetModel: string = 'gene
     console.log('🚀 Starting prompt refinement process...');
     const apiKey = getApiKey();
     const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-05-20' });
     console.log('✅ Gemini 2.0 Flash model initialized');
 
     const systemPrompt = `You are a professional prompt engineer. Your job is to take raw or messy instructions from users and rewrite them as structured, high-quality prompts suitable for AI models like ${targetModel === 'gemini' ? 'Google Gemini' : targetModel === 'chatgpt' ? 'OpenAI ChatGPT' : targetModel === 'claude' ? 'Anthropic Claude' : 'any AI model'}.
@@ -75,11 +75,11 @@ Return only the refined prompt, nothing else.`;
 
   } catch (error) {
     console.error('❌ Error refining prompt:', error);
-    
+
     if (error instanceof Error && error.message.includes('API key')) {
       throw new Error('API key configuration error. Please check your Gemini API key.');
     }
-    
+
     throw new Error('Failed to refine prompt. Please try again.');
   }
 };

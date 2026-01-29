@@ -8,15 +8,15 @@ export class GeminiResumeService {
 
   constructor() {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    
+
     if (!apiKey) {
       throw new Error('VITE_GEMINI_API_KEY is not set in environment variables');
     }
-    
+
     this.genAI = new GoogleGenerativeAI(apiKey);
-    
+
     this.model = this.genAI.getGenerativeModel({
-      model: "gemini-2.0-flash-exp",
+      model: "gemini-2.5-flash-preview-05-20",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -149,11 +149,11 @@ export class GeminiResumeService {
       const rawText = await result.response.text();
       const cleanedText = this.extractJsonFromResponse(rawText);
       const parsed = JSON.parse(cleanedText);
-      
+
       // Ensure score is realistic and not inflated
       if (parsed.score > 95) parsed.score = 95;
       if (parsed.score < 5) parsed.score = 5;
-      
+
       return parsed;
     } catch (error) {
       console.error('ADS calculation failed:', error);
@@ -233,8 +233,8 @@ export class GeminiResumeService {
       missingKeywords,
       recommendations,
       improvedSections: {
-        summary: resumeData.summary ? 
-          `Enhanced: ${resumeData.summary.substring(0, 80)}... [Add more specific achievements and career goals]` : 
+        summary: resumeData.summary ?
+          `Enhanced: ${resumeData.summary.substring(0, 80)}... [Add more specific achievements and career goals]` :
           "Create a compelling professional summary highlighting your key strengths, relevant experience, and career objectives (3-4 sentences minimum).",
         experience: [
           "Add quantifiable achievements with specific metrics (e.g., 'Increased sales by 25%')",
@@ -243,7 +243,7 @@ export class GeminiResumeService {
         ],
         skills: [
           "Add industry-relevant technical skills",
-          "Include specific programming languages/frameworks if applicable", 
+          "Include specific programming languages/frameworks if applicable",
           "Add relevant soft skills like leadership, communication, problem-solving"
         ]
       }
@@ -251,12 +251,12 @@ export class GeminiResumeService {
   }
 
   async optimizeResume(resumeData: ResumeData, jdAnalysis: JDAnalysis | null): Promise<ResumeData> {
-    const jdContext = jdAnalysis ? 
+    const jdContext = jdAnalysis ?
       `Job Requirements for optimization:
        Key Skills: ${jdAnalysis.keySkills.join(', ')}
        Tools: ${jdAnalysis.tools.join(', ')}
        Industry Keywords: ${jdAnalysis.industryKeywords.join(', ')}
-       Responsibilities: ${jdAnalysis.responsibilities.join(', ')}` : 
+       Responsibilities: ${jdAnalysis.responsibilities.join(', ')}` :
       "No specific job requirements - optimize for general improvement and professional impact";
 
     const prompt = `
@@ -285,7 +285,7 @@ export class GeminiResumeService {
       const rawText = await result.response.text();
       const cleanedText = this.extractJsonFromResponse(rawText);
       const optimizedResume = JSON.parse(cleanedText);
-      
+
       // Ensure we maintain the original structure
       return {
         ...resumeData,

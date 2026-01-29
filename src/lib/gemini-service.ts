@@ -16,7 +16,7 @@ export class GeminiService {
     this.genAI = new GoogleGenerativeAI(apiKey);
     
     this.model = this.genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash-preview-05-20",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,

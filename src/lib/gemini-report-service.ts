@@ -11,16 +11,16 @@ if (!API_KEY) {
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export class ReportGeneratorService {
-  private model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+  private model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-05-20' });
 
   async generateReport(formData: ReportFormData): Promise<GeneratedReport> {
     const prompt = this.buildPrompt(formData);
-    
+
     try {
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      
+
       return this.parseReportSections(text);
     } catch (error) {
       console.error('Error generating report:', error);
@@ -29,8 +29,8 @@ export class ReportGeneratorService {
   }
 
   async regenerateSection(
-    sectionName: string, 
-    formData: ReportFormData, 
+    sectionName: string,
+    formData: ReportFormData,
     currentContent: string
   ): Promise<string> {
     const prompt = `

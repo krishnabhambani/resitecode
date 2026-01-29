@@ -7,15 +7,15 @@ export class GeminiWebsiteService {
 
   constructor() {
     const apiKey = import.meta.env.VITE_BUILDER_API;
-    
+
     if (!apiKey) {
       throw new Error('VITE_BUILDER_API is not set in environment variables');
     }
-    
+
     this.genAI = new GoogleGenerativeAI(apiKey);
-    
+
     this.model = this.genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash-preview-05-20",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -86,11 +86,11 @@ export class GeminiWebsiteService {
 
     try {
       console.log('Generating website for:', description);
-      
+
       // Generate website HTML
       const websiteResult = await this.model.generateContent([websitePrompt]);
       const htmlText = await websiteResult.response.text();
-      
+
       // Clean up the HTML response
       let cleanedHtml = htmlText.trim();
       if (cleanedHtml.includes('```html')) {
@@ -100,11 +100,11 @@ export class GeminiWebsiteService {
       }
 
       console.log('Website HTML generated, length:', cleanedHtml.length);
-      
+
       // Generate instructions
       const instructionsResult = await this.model.generateContent([instructionsPrompt]);
       const instructionsText = await instructionsResult.response.text();
-      
+
       console.log('Instructions generated');
 
       return {

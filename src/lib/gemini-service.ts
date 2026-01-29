@@ -8,15 +8,15 @@ export class GeminiService {
 
   constructor() {
     const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    
+
     if (!apiKey) {
       throw new Error('VITE_GEMINI_API_KEY is not set in environment variables');
     }
-    
+
     this.genAI = new GoogleGenerativeAI(apiKey);
-    
+
     this.model = this.genAI.getGenerativeModel({
-      model: "gemini-2.5-flash-preview-05-20",
+      model: "gemini-2.5-flash",
       safetySettings: [
         {
           category: HarmCategory.HARM_CATEGORY_HARASSMENT,
@@ -45,7 +45,7 @@ export class GeminiService {
       CRITICAL REQUIREMENTS:
       - SLIDE 1: Title slide with main presentation title and 3-4 engaging bullet points about what the presentation covers
       - SLIDE 2: Table of Contents/Agenda listing all upcoming slide topics
-      - SLIDES 3-${slideCount-1}: Content slides, each covering a distinct aspect of ${topic}
+      - SLIDES 3-${slideCount - 1}: Content slides, each covering a distinct aspect of ${topic}
       - FINAL SLIDE: Conclusion/Summary with key takeaways
 
       CONTENT EXCELLENCE STANDARDS:
@@ -87,18 +87,18 @@ export class GeminiService {
       const result = await this.model.generateContent([systemPrompt]);
       const rawText = await result.response.text();
       console.log("Raw Gemini response:", rawText.substring(0, 200) + "...");
-      
+
       const cleanedText = this.extractJsonFromResponse(rawText);
       console.log("Cleaned JSON:", cleanedText.substring(0, 200) + "...");
-      
+
       try {
         const data = JSON.parse(cleanedText);
-        
+
         if (!data.title || !Array.isArray(data.slides)) {
           console.error("Invalid response format:", data);
           throw new Error('Invalid response format from Gemini');
         }
-        
+
         return {
           title: data.title,
           slides: data.slides.map((slide: any) => ({
@@ -120,7 +120,7 @@ export class GeminiService {
 
   async generateImage(prompt: string): Promise<string | null> {
     console.log("[GeminiService] Starting image search for prompt:", prompt);
-    
+
     // Try Google first
     try {
       const googleResult = await fetchImageFromGoogle(prompt);
@@ -131,7 +131,7 @@ export class GeminiService {
     } catch (error) {
       console.error("[GeminiService] Google Search failed:", error);
     }
-    
+
     // Fallback to Unsplash
     try {
       const unsplashResult = await generateAIImage(prompt);
@@ -142,7 +142,7 @@ export class GeminiService {
     } catch (error) {
       console.error("[GeminiService] Unsplash fallback failed:", error);
     }
-    
+
     console.warn("[GeminiService] All image generation methods failed for prompt:", prompt);
     return null;
   }
@@ -159,7 +159,7 @@ export class GeminiService {
 
   async modifySlide(slideIndex: number, modification: string, currentPresentation: Presentation): Promise<SlideContent> {
     const currentSlide = currentPresentation.slides[slideIndex];
-    
+
     const modificationPrompt = `
       Modify this presentation slide based on the user's request: "${modification}"
       
@@ -182,7 +182,7 @@ export class GeminiService {
       const rawText = await result.response.text();
       const cleanedText = this.extractJsonFromResponse(rawText);
       const data = JSON.parse(cleanedText);
-      
+
       return {
         title: data.title || currentSlide.title,
         content: Array.isArray(data.content) ? data.content : currentSlide.content,

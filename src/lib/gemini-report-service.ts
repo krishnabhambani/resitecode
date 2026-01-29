@@ -11,7 +11,7 @@ if (!API_KEY) {
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 export class ReportGeneratorService {
-  private model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-05-20' });
+  private model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
   async generateReport(formData: ReportFormData): Promise<GeneratedReport> {
     const prompt = this.buildPrompt(formData);
